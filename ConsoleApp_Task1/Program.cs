@@ -1,65 +1,17 @@
 ﻿using System;
 
 
-namespace ConsoleApp1_1
+namespace ConsoleApp_Task1
 {
     public class Figure
     {
-        public double input;
-
-        public Figure(double RadiusOrSide)
+        private double _input { get; set; }
+        public virtual double GetFigureArea()
         {
-            input = RadiusOrSide;
+            return 0;
         }
-
-        static double CalcCircle(double a)
-        {
-            const double Pi = Math.PI;
-            double result = Math.Round((a * a * Pi), 2);
-            return result;
-        }
-
-        static double CalcArea(double b)
-        {
-            double result = Math.Round(b * b, 2);
-            return result;
-        }
-
-        public static void Main(string[] args)
-        {
-            EnterFigure(Shape.Circle);
-            EnterFigure(Shape.Area);
-            Console.WriteLine("The end");
-            Console.ReadKey();
-        }
-
-        enum Shape
-        {
-            Circle,
-            Area
-        }
-
-        static void EnterFigure(Shape shape)
-        {
-            switch (shape)
-            {
-                case Shape.Circle:
-
-                    Console.WriteLine("What is the radius of the circle? Please populate and push Enter key \nNOTE:3 attempts are available otherwise random value will be taken");
-                    double MainResultCircle = CalcCircle(ReturnRadiusOrSide());
-                    Console.WriteLine("\n\rThe square of the circle is " + MainResultCircle);
-                    break;
-
-                case Shape.Area:
-
-                    Console.WriteLine("\nWhat is the side of the square? Please populate and push Enter key \nNOTE:3 attempts are available otherwise random value will be taken");
-                    double MainResultArea = CalcArea(ReturnRadiusOrSide());
-                    Console.WriteLine("\n\rThe square of the area is " + MainResultArea);
-                    break;
-            }
-        }
-
-        public static double ReturnRadiusOrSide()
+        public Figure() { }
+        public double GetValidatedInput()
         {
             int e = 0;
             while (e < 3)
@@ -69,9 +21,9 @@ namespace ConsoleApp1_1
                 {
                     try
                     {
-                        if ((InputString.IndexOf('0') != -1) && (InputString.Length == 1)) 
+                        if ((InputString.IndexOf('0') != -1) && (InputString.Length == 1))
                         {
-                            Console.WriteLine("\nIncorrect Input: Zero is not allowed");
+                            Console.WriteLine("Incorrect Input: Zero is not allowed");
                             e++;
                             continue;
                         }
@@ -82,44 +34,68 @@ namespace ConsoleApp1_1
                             {
                                 InputString = InputString.Replace(",", ".");
                             }
-                            else
-                            {
-
-                            }
-                            double RadiusOrSideTest = Convert.ToDouble(InputString);
-                            var CircleOrArea = new Figure(RadiusOrSideTest) { };
-                            Console.WriteLine("\nInput Value is " + CircleOrArea.input);
-                            return CircleOrArea.input;
+                            _input = Convert.ToDouble(InputString);
+                            Console.WriteLine("Input Value is " + _input);
+                            return _input;
                         }
                     }
-
                     catch (SystemException sex)
                     {
                         // this class's error string
                         string LastError = sex.Message;
-                        Console.WriteLine("\nIncorrect Input: value is not parsed correctly");
+                        Console.WriteLine("Incorrect Input: value is not parsed correctly");
                         e++;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("\nIncorrect Input: Empty value is not allowed");
+                    Console.WriteLine("Incorrect Input: Empty value is not allowed");
                     e++;
                 }
             }
-
             if (e == 3)
             {
                 double minNumber = 0.5;
                 double maxNumber = 5.0;
-                double RadiusOrSide = new Random().NextDouble() * (maxNumber - minNumber) + minNumber;
-                Figure OtherCircleOrArea = new Figure(RadiusOrSide) { };
-                Console.WriteLine("\nRandom value is " + Math.Round((OtherCircleOrArea.input),2));
-                return OtherCircleOrArea.input;
-
+                _input = new Random().NextDouble() * (maxNumber - minNumber) + minNumber;
+                Console.WriteLine("\nRandom value is " + Math.Round((_input), 2));
+                return _input;
             }
             return 0;
         }
+        public class Program
+        {
+            public static void Main(string[] args)
+            {
+                Figure figure = new Figure();
 
+                // To get the Area of the Circle
+                Console.WriteLine("What is the radius of the circle? Please populate and push Enter key \nNOTE:3 attempts are available otherwise random value will be taken");
+                double Radius = figure.GetValidatedInput();
+                Figure circle = new Circle(Radius);
+                double MainResultCircle = circle.GetFigureArea();
+                Console.WriteLine("\n\rThe area of the circle is " + MainResultCircle);
+
+                // To get the Area of the Square
+                Console.WriteLine("\nWhat is the side of the square? Please populate and push Enter key \nNOTE:3 attempts are available otherwise random value will be taken");
+                double Side = figure.GetValidatedInput();
+                Figure square = new Square(Side);
+                double MainResultSquare = square.GetFigureArea();
+                Console.WriteLine("\n\rThe area of the square is " + MainResultSquare);
+
+                // does square fit into the circle/circle fit into the square?
+                string result = "";
+                if (Radius < (Side / 2))
+                {
+                    result = "\r\nThe Circle fits into the Square";
+                }
+                if (Math.Pow(2 * Math.Pow(Side, 2), 1 / 2) < (2 * Radius))
+                {
+                    result = "\r\nThe Square fits into the Circle";
+                }
+                Console.WriteLine(result);
+                Console.ReadKey();
+            }
+        }
     }
 }
