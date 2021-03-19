@@ -5,7 +5,7 @@ namespace ConsoleApp_Task1
 {
         public class Program
         {
-        public static void GetFitFigureOutput(Circle circle, Square square, Figure figureCircle, Figure figureSquare)             
+        public static void GetFitFigureDetails(Circle circle, Square square, Figure figureCircle, Figure figureSquare)             
         {
             bool circleFitsIntoSquare = figureCircle.GetFitFigure((Circle)circle, (Square)square);
             bool squareFitsIntoCircle = figureSquare.GetFitFigure((Square)square, (Circle)circle);
@@ -23,7 +23,7 @@ namespace ConsoleApp_Task1
                 Console.WriteLine("\nCircle dosn't fit into Square; Square dosn't fit into Circle");
             }
         }
-        public static void GetAndOutputCircleAndSquareArea(Figure figureCircle, Figure figureSquare)
+        public static void OutputCircleAndSquareAreaAndFitDetails(Figure figureCircle, Figure figureSquare)
         {
             // To get the Area of the Circle.
             Console.WriteLine("What is the radius of the circle? Please populate and push Enter key \nNOTE:3 attempts are available otherwise random value will be taken");
@@ -36,13 +36,13 @@ namespace ConsoleApp_Task1
             Console.WriteLine("\n\rThe area of the square is " + square.GetFigureArea());
 
             // To get if Circle fits into Square or Square fits into Circle.
-            GetFitFigureOutput((Circle)circle, (Square)square, (Figure)figureCircle, (Figure)figureSquare);
+            GetFitFigureDetails((Circle)circle, (Square)square, (Figure)figureCircle, (Figure)figureSquare);
         }
         public static void Main(string[] args)
         {
             Figure figureCircle = new Figure();
             Figure figureSquare = new Figure();
-            GetAndOutputCircleAndSquareArea((Figure) figureCircle, (Figure) figureSquare);
+            OutputCircleAndSquareAreaAndFitDetails((Figure) figureCircle, (Figure) figureSquare);
             Console.ReadKey();
         }
         }

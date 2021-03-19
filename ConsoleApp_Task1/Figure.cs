@@ -51,11 +51,11 @@ namespace ConsoleApp_Task1
             }
             if (attempt == MAX_ATTEMPTS)
             {
-                return GetRandovValue();
+                return GetRandomValue();
             }
             return 0;
         }
-        public double GetRandovValue()
+        public double GetRandomValue()
         {
             Input = new Random().NextDouble() * (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER;
             Console.WriteLine("\nRandom value is " + Math.Round((Input), 2));
