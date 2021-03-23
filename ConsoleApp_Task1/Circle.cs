@@ -10,6 +10,7 @@ namespace ConsoleApp_Task1
         {
            Radius = radius;
         }
+
         public override double GetFigureArea()
         {
             return Math.Round((Radius * Radius * Math.PI), 2);

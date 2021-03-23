@@ -8,12 +8,14 @@ namespace ConsoleApp_Task1
         public const double MIN_NUMBER = 0.5;
         public const double MAX_NUMBER = 5.0;
         public const int MAX_ATTEMPTS = 3;
-        public double Input { get; set; }
+        private static Random _random = new Random();
+        public static double Input { get; set; }
         public virtual double GetFigureArea()
         {
             return 0;
         }
-        public double GetValidatedInput()
+
+        public static double GetValidatedInput()
         {
             int attempt = 0;
             while (attempt < MAX_ATTEMPTS)
@@ -55,13 +57,15 @@ namespace ConsoleApp_Task1
             }
             return 0;
         }
-        public double GetRandomValue()
+
+        public static double GetRandomValue()
         {
-            Input = new Random().NextDouble() * (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER;
+            Input = _random.NextDouble() * (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER;
             Console.WriteLine("\nRandom value is " + Math.Round((Input), 2));
             return Math.Round((Input), 2);
         }
-        public bool GetFitFigure(Circle circle, Square square)
+
+        public static bool GetIfCircleFitsIntoSquare(Circle circle, Square square)
         {
             if (circle.Radius < (square.Side / 2))
             {
@@ -72,7 +76,8 @@ namespace ConsoleApp_Task1
                 return false;
             }
         }
-        public bool GetFitFigure(Square square, Circle circle)
+
+        public static bool GetIfSquareFitsIntoCircle(Square square, Circle circle)
         {
             if (Math.Sqrt(2 * Math.Pow(square.Side, 2)) < (2 * circle.Radius))
             {

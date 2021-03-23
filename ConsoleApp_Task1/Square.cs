@@ -10,6 +10,7 @@ namespace ConsoleApp_Task1
         {
             Side = side;
         }
+
         public override double GetFigureArea()
         {
             return Math.Round(Side * Side, 2);
