@@ -20,18 +20,18 @@ namespace ConsoleApp_Task1
 
             private static void GetIfCircleFitsIntoSquareOrSquareFitsIntoCircle(Circle circle, Square square)             
             {
-                bool circleFitsIntoSquare = Figure.GetIfCircleFitsIntoSquare(circle, square);
-                bool squareFitsIntoCircle = Figure.GetIfSquareFitsIntoCircle(square, circle);
+                bool circleFitsIntoSquare = Figure.IsCircleFitsIntoSquare(circle, square);
+                bool squareFitsIntoCircle = Figure.IsSquareFitsIntoCircle(square, circle);
 
-                if ((circleFitsIntoSquare == true) && (squareFitsIntoCircle == false))
+                if (circleFitsIntoSquare && !squareFitsIntoCircle)
                 {
                     Console.WriteLine("\nCircle fits into Square");
                 }
-                if ((circleFitsIntoSquare == false) && (squareFitsIntoCircle == true))
+                if (!circleFitsIntoSquare && squareFitsIntoCircle)
                 {
                     Console.WriteLine("\nSquare fits into Circle");
                 }
-                if ((circleFitsIntoSquare == false) && (squareFitsIntoCircle == false))
+                if (!circleFitsIntoSquare && !squareFitsIntoCircle)
                 {
                     Console.WriteLine("\nCircle dosn't fit into Square; Square dosn't fit into Circle");
                 }
@@ -42,5 +42,6 @@ namespace ConsoleApp_Task1
                 Console.WriteLine("\n\rThe area of the circle is " + circle.GetFigureArea());
                 Console.WriteLine("\n\rThe area of the square is " + square.GetFigureArea());
             }
+
         }
 }
