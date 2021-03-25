@@ -65,12 +65,12 @@ namespace ConsoleApp_Task1
             return Math.Round((Input), 2);
         }
 
-        public static bool IsCircleFitsIntoSquare(Circle circle, Square square)
+        public static bool DoesCircleFitIntoSquare(Circle circle, Square square)
         {
             return (circle.Radius < (square.Side / 2));
         }
 
-        public static bool IsSquareFitsIntoCircle(Square square, Circle circle)
+        public static bool DoesSquareFitIntoCircle(Square square, Circle circle)
         {
             return (Math.Sqrt(2 * Math.Pow(square.Side, 2)) < (2 * circle.Radius));
         }

@@ -20,8 +20,8 @@ namespace ConsoleApp_Task1
 
             private static void GetIfCircleFitsIntoSquareOrSquareFitsIntoCircle(Circle circle, Square square)             
             {
-                bool circleFitsIntoSquare = Figure.IsCircleFitsIntoSquare(circle, square);
-                bool squareFitsIntoCircle = Figure.IsSquareFitsIntoCircle(square, circle);
+                bool circleFitsIntoSquare = Figure.DoesCircleFitIntoSquare(circle, square);
+                bool squareFitsIntoCircle = Figure.DoesSquareFitIntoCircle(square, circle);
 
                 if (circleFitsIntoSquare && !squareFitsIntoCircle)
                 {
